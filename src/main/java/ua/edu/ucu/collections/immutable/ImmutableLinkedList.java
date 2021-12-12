@@ -270,9 +270,6 @@ public final class ImmutableLinkedList implements ImmutableList {
     public ImmutableList set(int index, Object e)
             throws IndexOutOfBoundsException {
         ImmutableLinkedList res = (ImmutableLinkedList) copy();
-        if (head == null) {
-            throw new IndexOutOfBoundsException();
-        }
 
         int idx = 0;
         Node curr = res.head;

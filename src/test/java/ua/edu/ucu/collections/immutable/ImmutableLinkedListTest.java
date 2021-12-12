@@ -13,6 +13,9 @@ public class ImmutableLinkedListTest {
     public void testTestToString() {
         test_arr = new ImmutableLinkedList(arr);
         assertEquals("1 2 3 ", test_arr.toString());
+
+        test_arr = new ImmutableLinkedList(new Object[] {});
+        assertEquals("", test_arr.toString());
     }
 
     @Test
@@ -24,12 +27,22 @@ public class ImmutableLinkedListTest {
         test_arr2 = (ImmutableLinkedList) test_arr.add(0, 4);
         assertEquals("4 1 2 3 ", test_arr2.toString());
         assertEquals("1 2 3 ", test_arr.toString());
+
+        test_arr2 = (ImmutableLinkedList) test_arr.add(2, 4);
+        assertEquals("1 2 4 3 ", test_arr2.toString());
+        assertEquals("1 2 3 ", test_arr.toString());
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void testAddFail() {
         test_arr = new ImmutableLinkedList(arr);
         test_arr2 = (ImmutableLinkedList) test_arr.add(100, 4);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddFail2() {
+        test_arr = new ImmutableLinkedList(arr);
+        test_arr2 = (ImmutableLinkedList) test_arr.add(-10, 4);
     }
 
     @Test
@@ -41,10 +54,25 @@ public class ImmutableLinkedListTest {
         test_arr2 = (ImmutableLinkedList) test_arr.addAll(0, arr);
         assertEquals("1 2 3 1 2 3 ", test_arr2.toString());
         assertEquals("1 2 3 ", test_arr.toString());
+
+        test_arr2 = (ImmutableLinkedList) test_arr.addAll(2, arr);
+        assertEquals("1 2 1 2 3 3 ", test_arr2.toString());
+        assertEquals("1 2 3 ", test_arr.toString());
+
+        test_arr2 = (ImmutableLinkedList) test_arr.addAll(
+                0, new Object[] {9, 8, 7, 6, 5, 4, 3, 2, 1});
+        assertEquals("9 8 7 6 5 4 3 2 1 1 2 3 ", test_arr2.toString());
+        assertEquals("1 2 3 ", test_arr.toString());
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void testAddAllFail() {
+        test_arr = new ImmutableLinkedList(arr);
+        test_arr2 = (ImmutableLinkedList) test_arr.add(100, arr);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddAllFail2() {
         test_arr = new ImmutableLinkedList(arr);
         test_arr2 = (ImmutableLinkedList) test_arr.add(100, arr);
     }
@@ -68,6 +96,15 @@ public class ImmutableLinkedListTest {
         test_arr2 = (ImmutableLinkedList) test_arr.remove(0);
         assertEquals("2 3 ", test_arr2.toString());
         assertEquals("1 2 3 ", test_arr.toString());
+
+        test_arr2 = (ImmutableLinkedList) test_arr.remove(2);
+        assertEquals("1 2 ", test_arr2.toString());
+        assertEquals("1 2 3 ", test_arr.toString());
+
+        test_arr = new ImmutableLinkedList(new Object[] {1});
+        test_arr2 = (ImmutableLinkedList) test_arr.remove(0);
+        assertEquals("", test_arr2.toString());
+        assertEquals("1 ", test_arr.toString());
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -83,6 +120,12 @@ public class ImmutableLinkedListTest {
         test_arr2 = (ImmutableLinkedList) test_arr.set(0, 100);
         assertEquals("100 2 3 ", test_arr2.toString());
         assertEquals("1 2 3 ", test_arr.toString());
+
+        test_arr = new ImmutableLinkedList(new Object[] {1});
+        test_arr2 = (ImmutableLinkedList) test_arr.set(0, 0);
+        assertEquals("0 ", test_arr2.toString());
+        assertEquals("1 ", test_arr.toString());
+
 
     }
 
@@ -131,6 +174,10 @@ public class ImmutableLinkedListTest {
         test_arr = new ImmutableLinkedList(arr);
         Object[] arr2 = test_arr.toArray();
         assertArrayEquals(arr, arr2);
+
+        test_arr = new ImmutableLinkedList(new Object[] {});
+        arr2 = test_arr.toArray();
+        assertArrayEquals(new Object[] {}, arr2);
     }
 
 

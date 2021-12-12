@@ -14,7 +14,7 @@ public final class ImmutableLinkedList implements ImmutableList {
             head = elm;
             tail = elm;
 
-            for (int i = 1; i < elements.length; i++){
+            for (int i = 1; i < elements.length; i++) {
                 elm = new Node(elements[i]);
                 tail.setNext(elm);
                 elm.setPrevious(tail);
@@ -33,16 +33,16 @@ public final class ImmutableLinkedList implements ImmutableList {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
 
-        String res = "";
+        StringBuilder res = new StringBuilder();
         Node curr = head;
-        while (curr != null){
-            res += curr.getValue();
-            res += " ";
+        while (curr != null) {
+            res.append(curr.getValue());
+            res.append(" ");
             curr = curr.getNext();
         }
-        return res;
+        return res.toString();
     }
 
     private ImmutableList copy() {
@@ -86,7 +86,7 @@ public final class ImmutableLinkedList implements ImmutableList {
             res.tail = newElm;
             res.tail.setNext(null);
         }
-        else{
+        else {
             newElm = new Node(e);
             res.tail = newElm;
             res.head = newElm;
@@ -98,7 +98,8 @@ public final class ImmutableLinkedList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList add(int index, Object e) throws IndexOutOfBoundsException {
+    public ImmutableList add(int index, Object e)
+            throws IndexOutOfBoundsException {
         ImmutableLinkedList res = (ImmutableLinkedList) copy();
 
 
@@ -113,9 +114,9 @@ public final class ImmutableLinkedList implements ImmutableList {
         }
         idx++;
         Node curr = res.head;
-        while (curr != null){
+        while (curr != null) {
 
-            if(Objects.equals(index, idx)){
+            if(Objects.equals(index, idx)) {
                 newElm.setPrevious(curr);
                 newElm.setNext(curr.getNext());
                 curr.setNext(newElm);
@@ -125,7 +126,7 @@ public final class ImmutableLinkedList implements ImmutableList {
             curr = curr.getNext();
         }
         idx--;
-        if (Objects.equals(index, idx)){
+        if (Objects.equals(index, idx)) {
             newElm.setPrevious(res.tail);
             res.tail.setNext(newElm);
             return res;
@@ -152,8 +153,8 @@ public final class ImmutableLinkedList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList addAll(int index, Object[] c) throws IndexOutOfBoundsException {
-        // work with empty arr
+    public ImmutableList addAll(int index, Object[] c)
+            throws IndexOutOfBoundsException {
         ImmutableLinkedList res = (ImmutableLinkedList) copy();
         ImmutableLinkedList toAdd = new ImmutableLinkedList(c);
         if (toAdd.isEmpty()) {
@@ -266,7 +267,8 @@ public final class ImmutableLinkedList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList set(int index, Object e) throws IndexOutOfBoundsException{
+    public ImmutableList set(int index, Object e)
+            throws IndexOutOfBoundsException {
         ImmutableLinkedList res = (ImmutableLinkedList) copy();
         if (head == null) {
             throw new IndexOutOfBoundsException();

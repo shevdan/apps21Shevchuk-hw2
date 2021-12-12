@@ -332,12 +332,12 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public Object[] toArray() {
-        if (head == null){
+        if (head == null) {
             return new Object[0];
         }
         ArrayList<Object> arrCopy = new ArrayList<>();
         Node curr = head;
-        while (curr != null){
+        while (curr != null) {
             arrCopy.add(curr.getValue());
             curr = curr.getNext();
         }

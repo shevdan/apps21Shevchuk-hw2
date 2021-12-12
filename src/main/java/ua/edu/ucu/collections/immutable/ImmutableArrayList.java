@@ -129,7 +129,7 @@ public final class ImmutableArrayList implements ImmutableList {
         }
 
         Object[] arrCopy = createCopy(arrLength);
-        for (int i = 0; i < index; i++){
+        for (int i = 0; i < index; i++) {
             arrCopy[i] = arr[i];
         }
 
@@ -150,7 +150,7 @@ public final class ImmutableArrayList implements ImmutableList {
         }
 
         Object[] arrCopy = createCopy(arrLength);
-        for (int i = 0; i < arrLength; i++){
+        for (int i = 0; i < arrLength; i++) {
             arrCopy[i] = arr[i];
         }
         arrCopy[index] = e;
@@ -161,7 +161,7 @@ public final class ImmutableArrayList implements ImmutableList {
 
     @Override
     public int indexOf(Object e) {
-        for (int i = 0; i < arrLength; i++){
+        for (int i = 0; i < arrLength; i++) {
             if (Objects.equals(arr[i], e)) {
                 return i;
             }
@@ -189,7 +189,7 @@ public final class ImmutableArrayList implements ImmutableList {
     @Override
     public Object[] toArray() {
         Object[] arrCopy = new Object[arrLength];
-        for (int i = 0; i < arrLength; i++){
+        for (int i = 0; i < arrLength; i++) {
             arrCopy[i] = arr[i];
         }
         return arrCopy;

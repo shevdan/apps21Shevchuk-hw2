@@ -116,7 +116,7 @@ public final class ImmutableLinkedList implements ImmutableList {
         Node curr = res.head;
         while (curr != null) {
 
-            if(Objects.equals(index, idx)) {
+            if (Objects.equals(index, idx)) {
                 newElm.setPrevious(curr);
                 newElm.setNext(curr.getNext());
                 curr.setNext(newElm);
@@ -353,7 +353,7 @@ public final class ImmutableLinkedList implements ImmutableList {
         Node newHead = new Node(e);
 
         if (res.head == null) {
-            res.head =newHead;
+            res.head = newHead;
             res.tail = newHead;
             return res;
         }

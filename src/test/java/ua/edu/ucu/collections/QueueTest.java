@@ -2,6 +2,9 @@ package ua.edu.ucu.collections;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.EmptyStackException;
+
 import static org.junit.Assert.*;
 
 public class QueueTest {
@@ -16,15 +19,27 @@ public class QueueTest {
     }
 
     @Test
-    public void peek() {
+    public void testPeek() {
         assertEquals(1, queue.dequeue());
         assertEquals(2, queue.dequeue());
         assertEquals(3, queue.dequeue());
     }
 
+    @Test(expected = EmptyStackException.class)
+    public void testPeekFail() {
+        queue = new Queue();
+        queue.peek();
+    }
+
     @Test
-    public void dequeue() {
+    public void testDequeue() {
         assertEquals(1, queue.peek());
+    }
+
+    @Test(expected = EmptyStackException.class)
+    public void testDequeueFail() {
+        queue = new Queue();
+        queue.dequeue();
     }
 
 }

@@ -167,10 +167,6 @@ public final class ImmutableLinkedList implements ImmutableList {
 
         int idx = 0;
         if (index == 0) {
-            if (res.head == null) {
-                return toAdd;
-            }
-
             toAdd.tail.setNext(res.head);
             res.head.setPrevious(toAdd.tail);
             res.head = toAdd.head;

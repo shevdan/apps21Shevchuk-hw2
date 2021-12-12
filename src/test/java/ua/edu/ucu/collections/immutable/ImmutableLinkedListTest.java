@@ -63,6 +63,20 @@ public class ImmutableLinkedListTest {
                 0, new Object[] {9, 8, 7, 6, 5, 4, 3, 2, 1});
         assertEquals("9 8 7 6 5 4 3 2 1 1 2 3 ", test_arr2.toString());
         assertEquals("1 2 3 ", test_arr.toString());
+
+        test_arr2 = (ImmutableLinkedList) test_arr.addAll(1, new Object[] {});
+        assertEquals("1 2 3 ", test_arr2.toString());
+        assertEquals("1 2 3 ", test_arr.toString());
+
+
+        test_arr2 = (ImmutableLinkedList) test_arr.addAll(3, arr);
+        assertEquals("1 2 3 1 2 3 ", test_arr2.toString());
+        assertEquals("1 2 3 ", test_arr.toString());
+
+        test_arr = new ImmutableLinkedList();
+        test_arr2 = (ImmutableLinkedList) test_arr.addAll(0, arr);
+        assertEquals("1 2 3 ", test_arr2.toString());
+        assertEquals("", test_arr.toString());
     }
 
     @Test(expected = IndexOutOfBoundsException.class)

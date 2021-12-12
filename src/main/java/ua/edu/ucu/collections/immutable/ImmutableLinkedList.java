@@ -125,12 +125,6 @@ public final class ImmutableLinkedList implements ImmutableList {
             idx++;
             curr = curr.getNext();
         }
-        idx--;
-        if (Objects.equals(index, idx)) {
-            newElm.setPrevious(res.tail);
-            res.tail.setNext(newElm);
-            return res;
-        }
 
         throw new IndexOutOfBoundsException();
 
@@ -186,14 +180,6 @@ public final class ImmutableLinkedList implements ImmutableList {
             }
             idx++;
             curr = curr.getNext();
-        }
-        idx--;
-
-        if (Objects.equals(index, idx)) {
-            res.tail.setNext(toAdd.head);
-            toAdd.head.setPrevious(res.tail);
-            res.tail = toAdd.tail;
-            return res;
         }
 
         throw new IndexOutOfBoundsException();

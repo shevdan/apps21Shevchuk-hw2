@@ -43,50 +43,18 @@ public final class ImmutableArrayList implements ImmutableList {
 
     @Override
     public ImmutableList add(Object e) {
-        Object[] arrCopy = createCopy(arrLength);
-        for (int i = 0; i < arrLength; i++) {
-            arrCopy[i] = arr[i];
-        }
-        arrCopy[arrLength] = e;
-
-        ImmutableArrayList res = new ImmutableArrayList(arrCopy);
-        res.arrLength = arrLength + 1;
-        return  res;
+        return  add(arrLength, e);
     }
 
     @Override
     public ImmutableList add(int index, Object e)
             throws IndexOutOfBoundsException {
-
-        if (index > arrLength  + 1 || index < 0) {
-            throw new IndexOutOfBoundsException();
-        }
-        Object[] arrCopy = createCopy(arrLength);
-        for (int i = 0; i < index; i++) {
-            arrCopy[i] = arr[i];
-        }
-
-        arrCopy[index] = e;
-        for (int i = index + 1; i <= arrLength; i++) {
-            arrCopy[i] = arr[i - 1];
-        }
-        ImmutableArrayList res = new ImmutableArrayList(arrCopy);
-        res.arrLength = arrLength + 1;
-        return  res;
+        return  addAll(index, new Object[] {e});
     }
 
     @Override
     public ImmutableList addAll(Object[] c) {
-        Object[] arrCopy = createCopy(arrLength + c.length);
-        for (int i = 0; i < arrLength; i++) {
-            arrCopy[i] = arr[i];
-        }
-        for (int i = arrLength; i < arrLength + c.length; i++) {
-            arrCopy[i] = c[i - arrLength];
-        }
-        ImmutableArrayList res = new ImmutableArrayList(arrCopy);
-        res.arrLength = arrLength + c.length;
-        return  res;
+        return  addAll(arrLength, c);
     }
 
     @Override

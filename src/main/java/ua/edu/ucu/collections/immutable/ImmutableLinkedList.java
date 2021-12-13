@@ -74,60 +74,14 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableList add(Object e) {
-        ImmutableLinkedList res = (ImmutableLinkedList) copy();
-
-
-        Node newElm;
-        if (res.tail != null) {
-
-            newElm = new Node(e);
-            res.tail.setNext(newElm);
-            newElm.setPrevious(res.tail);
-            res.tail = newElm;
-            res.tail.setNext(null);
-        }
-        else {
-            newElm = new Node(e);
-            res.tail = newElm;
-            res.head = newElm;
-        }
-
-
-
-        return res;
+        return addAll(size(), new Object[] {e});
     }
 
     @Override
     public ImmutableList add(int index, Object e)
             throws IndexOutOfBoundsException {
-        ImmutableLinkedList res = (ImmutableLinkedList) copy();
 
-
-        int idx = 0;
-        Node newElm = new Node(e);
-
-        if (index == 0) {
-            newElm.setNext(res.head);
-            res.head.setPrevious(newElm);
-            res.head = newElm;
-            return res;
-        }
-        idx++;
-        Node curr = res.head;
-        while (curr != null) {
-
-            if (Objects.equals(index, idx)) {
-                newElm.setPrevious(curr);
-                newElm.setNext(curr.getNext());
-                curr.setNext(newElm);
-                return res;
-            }
-            idx++;
-            curr = curr.getNext();
-        }
-
-        throw new IndexOutOfBoundsException();
-
+        return addAll(index, new Object[] {e});
     }
 
     @Override
